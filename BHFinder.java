@@ -25,7 +25,7 @@ public class BHFinder {
 		if(Arrays.asList(hey.lowerCBUCampuses).contains(campus.toLowerCase()))
 			System.out.println("LIST OF AVAILABLE BOARDING HOUSES");	
 		for(int i = 0; i < hey.BUCampuses.length; i++) {
-			if(campus.equalsIgnoreCase(hey.BUCampuses[i])|| campus.equalsIgnoreCase(hey.lowerBUCampuses[i])) {
+			if(campus.equalsIgnoreCase(hey.BUCampuses[i])) {
 				for(int j = 0; j < hey.BHouses.length-1; j++) {
 					System.out.println((j+1) + ". " + hey.BHouses[i][j] + ": " 
 										+ hey.BHDeets[i][j] 
@@ -57,7 +57,11 @@ public class BHFinder {
 				filterPanel(campus);
 			}
 			else if(Ioption == 3) {
-				resetBH();
+				String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
+				tempBH = tempArr;
+				rangeOccupants = 0;
+				rangePrice = 0;
+				rangeDistance = 0;
 				main(null);
 			}
 			else if(Ioption == 0) {
@@ -110,7 +114,11 @@ public class BHFinder {
 		System.out.println("Do you want to search for more[Y/N]? ");
 		String choice= sc.nextLine();
 		if(choice.equalsIgnoreCase("y")||choice.equalsIgnoreCase("yes")) {
-			resetBH();
+			String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
+			tempBH = tempArr;
+			rangeOccupants = 0;
+			rangePrice = 0;
+			rangeDistance = 0;
 			campusFinder(campus);
 			options(campus);
 		}
@@ -207,13 +215,17 @@ public class BHFinder {
 				}
 			break;
 		case 4:
-			resetBH();
+			String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
+			tempBH = tempArr;
+			rangeOccupants = 0;
+			rangePrice = 0;
+			rangeDistance = 0;
 			filterPanel(campus);
 			break;
 		case 0:
 			if(usedFilter) {
 				//testCheck
-		//	System.out.println(usedFilter);
+			//System.out.println(usedFilter);
 				filter1(rangeOccupants, rangePrice, rangeDistance, campus);
 			}
 			else {
@@ -353,15 +365,6 @@ public class BHFinder {
 						+ "\nDistance: "+ tempBH[j][2] + "\n");
 			}
 		}		
-	}
-	
-	public static void resetBH() {
-		String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
-		tempBH = tempArr;
-		rangeOccupants = 0;
-		rangePrice = 0;
-		rangeDistance = 0;
-		usedFilter= false;
 	}
 	
 	public static int campusChecker(String campus) {
