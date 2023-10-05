@@ -1,9 +1,9 @@
-package kunganolang;
-
 public class boardinghouses {
 		
 		int arrnum = 3;
 		String BUCampuses[] = {"BU Tabaco", "BU Gubat", "BU Main", "BU Polangui"};
+		String lowerBUCampuses[] = {"Tabaco", "Gubat", "Main", "Polangui"};
+		String lowerCBUCampuses[] = {"bu tabaco", "bu gubat", "bu main", "bu polangui"};
 		String BHouses[][] = {
 				{"Tabaco1", "T2 Diks", "T3"},
 				{"Gf Day", "GUBAT", "GO Here"}, 
@@ -18,20 +18,25 @@ public class boardinghouses {
 				};
 		String BHPeople[][] = {
 				{"1", "2", "10"},
-				{"1000", "30", "10"},
+				{"1000", "29", "10"},
 				{"0", "9", "69"},
 				{"50", "70", "1"}
 				};
 		String BHPrice[][] = {
 				{"3000", "4000", "3500"},
 				{"2000", "3000", "2500"},
-				{"0", "9000", "0"},
+				{"0", "9000", "1500"},
 				{"1500", "1500", "300"}
 				};
 		String BHDistance[][] = { //In meters
-				{"500", "2000", "300"},
+				{"499", "2000", "300"},
 				{"100", "878", "6969"},
 				{"10", "8999", "1"},
 				{"50", "54", "300"}
 				};
+		String BHRanges [][]= {
+				{"0-9","10-29","30-69","70 or more"},
+				{"0-999","1000-1499","1500-4999","5000 or more"},
+				{"0-199","200-499","500-1499","1500 or more"}
+		};
 }
