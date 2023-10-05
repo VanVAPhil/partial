@@ -2,7 +2,7 @@ import java.util.*;
 
 public class BHFinder {
 
-	public static s hey = new s();
+	public static boardinghouses hey = new boardinghouses();
 	public static Scanner sc = new Scanner(System.in);
 	public static String tempBH[][] = new String[hey.arrnum][hey.BHPeople[0].length];
 	public static int rangeOccupants = 0, rangePrice = 0, rangeDistance = 0;
@@ -47,6 +47,7 @@ public class BHFinder {
 				+ "[2] Open Filter Options\n"
 				+ "[3] Change Campus\n"
 				+ "[0] Exit\n");
+		System.out.print("\nPick Option: ");
 		String option = sc.nextLine();
 		try {
 			int Ioption = Integer.parseInt(option);
@@ -57,7 +58,11 @@ public class BHFinder {
 				filterPanel(campus);
 			}
 			else if(Ioption == 3) {
-				resetBH();
+				String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
+				tempBH = tempArr;
+				rangeOccupants = 0;
+				rangePrice = 0;
+				rangeDistance = 0;
 				main(null);
 			}
 			else if(Ioption == 0) {
@@ -89,6 +94,7 @@ public class BHFinder {
 						+ "\nDistance: "+ hey.BHDistance[i][j] + "\n");
 			}
 		}
+		
 		if(!searchSuccess) {
 			System.out.println("No Boarding Houses that starts with \"" + search + "\"");
 			System.out.println("Do you want to search for more boarding houses[Y/N]? ");
@@ -109,7 +115,11 @@ public class BHFinder {
 		System.out.println("Do you want to search for more[Y/N]? ");
 		String choice= sc.nextLine();
 		if(choice.equalsIgnoreCase("y")||choice.equalsIgnoreCase("yes")) {
-			resetBH();
+			String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
+			tempBH = tempArr;
+			rangeOccupants = 0;
+			rangePrice = 0;
+			rangeDistance = 0;
 			campusFinder(campus);
 			options(campus);
 		}
@@ -139,6 +149,7 @@ public class BHFinder {
 		if(rangeDistance!=0)  
 			System.out.println("\tDistance: "+hey.BHRanges[2][rangeDistance-1]);
 		
+		System.out.print("\nPick a Filter Option: ");
 		int filter = 0;
 		try {
 			filter = Integer.parseInt(sc.nextLine());
@@ -152,12 +163,13 @@ public class BHFinder {
 	public static int filterOptions(int filter, String campus) {
 		switch(filter) {
 		case 1:
-			System.out.println("Occupants Range:\n"
+			System.out.println("\n\nOccupants Range:\n"
 							+ "[1] 0-9\n" 
 							+ "[2] 10-29\n"
 							+ "[3] 30-69\n"
 							+ "[4] 70 or more\n"
 							+ "[0] Back");
+			System.out.print("\nPick an Occupants Range: ");
 				try {
 					rangeOccupants = Integer.parseInt(sc.nextLine());
 					if(rangeOccupants != 0) {
@@ -170,12 +182,13 @@ public class BHFinder {
 				}
 			break;
 		case 2:
-			System.out.println("Price Range:\n"
+			System.out.println("\n\nPrice Range:\n"
 					+ "[1] 0-999\n" 
 					+ "[2] 1000-1499\n"
 					+ "[3] 1500-4999\n"
 					+ "[4] 5000 or more\n"
 					+ "[0] Back");
+			System.out.print("\nPick an Price Range: ");
 				try {
 					rangePrice = Integer.parseInt(sc.nextLine());
 					if(rangePrice != 0) {
@@ -188,12 +201,13 @@ public class BHFinder {
 				}
 			break;
 		case 3:
-			System.out.println("Distance Range:\n"
+			System.out.println("\n\nDistance Range:\n"
 					+ "[1] 0-199\n" 
 					+ "[2] 200-499\n"
 					+ "[3] 500-1499\n"
 					+ "[4] 1500 or more\n"
 					+ "[0] Back");
+			System.out.print("\nPick an Distance Range: ");
 				try {
 					rangeDistance = Integer.parseInt(sc.nextLine());
 					if(rangeDistance != 0) {
@@ -206,7 +220,11 @@ public class BHFinder {
 				}
 			break;
 		case 4:
-			resetBH();
+			String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
+			tempBH = tempArr;
+			rangeOccupants = 0;
+			rangePrice = 0;
+			rangeDistance = 0;
 			filterPanel(campus);
 			break;
 		case 0:
@@ -352,15 +370,6 @@ public class BHFinder {
 						+ "\nDistance: "+ tempBH[j][2] + "\n");
 			}
 		}		
-	}
-	
-	public static void resetBH() {
-		String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
-		tempBH = tempArr;
-		rangeOccupants = 0;
-		rangePrice = 0;
-		rangeDistance = 0;
-		usedFilter= false;
 	}
 	
 	public static int campusChecker(String campus) {
