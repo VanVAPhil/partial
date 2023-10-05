@@ -25,7 +25,7 @@ public class BHFinder {
 		if(Arrays.asList(hey.lowerCBUCampuses).contains(campus.toLowerCase()))
 			System.out.println("LIST OF AVAILABLE BOARDING HOUSES");	
 		for(int i = 0; i < hey.BUCampuses.length; i++) {
-			if(campus.equalsIgnoreCase(hey.BUCampuses[i])) {
+			if(campus.equalsIgnoreCase(hey.BUCampuses[i])|| campus.equalsIgnoreCase(hey.lowerBUCampuses[i])) {
 				for(int j = 0; j < hey.BHouses.length-1; j++) {
 					System.out.println((j+1) + ". " + hey.BHouses[i][j] + ": " 
 										+ hey.BHDeets[i][j] 
