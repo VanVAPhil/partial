@@ -2,7 +2,7 @@ import java.util.*;
 
 public class BHFinder {
 
-	public static boardinghouses hey = new boardinghouses();
+	public static s hey = new s();
 	public static Scanner sc = new Scanner(System.in);
 	public static String tempBH[][] = new String[hey.arrnum][hey.BHPeople[0].length];
 	public static int rangeOccupants = 0, rangePrice = 0, rangeDistance = 0;
@@ -25,7 +25,7 @@ public class BHFinder {
 		if(Arrays.asList(hey.lowerCBUCampuses).contains(campus.toLowerCase()))
 			System.out.println("LIST OF AVAILABLE BOARDING HOUSES");	
 		for(int i = 0; i < hey.BUCampuses.length; i++) {
-			if(campus.equalsIgnoreCase(hey.BUCampuses[i])) {
+			if(campus.equalsIgnoreCase(hey.BUCampuses[i]) || campus.equalsIgnoreCase(hey.lowerBUCampuses[i])) {
 				for(int j = 0; j < hey.BHouses.length-1; j++) {
 					System.out.println((j+1) + ". " + hey.BHouses[i][j] + ": " 
 										+ hey.BHDeets[i][j] 
@@ -57,11 +57,7 @@ public class BHFinder {
 				filterPanel(campus);
 			}
 			else if(Ioption == 3) {
-				String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
-				tempBH = tempArr;
-				rangeOccupants = 0;
-				rangePrice = 0;
-				rangeDistance = 0;
+				resetBH();
 				main(null);
 			}
 			else if(Ioption == 0) {
@@ -93,7 +89,6 @@ public class BHFinder {
 						+ "\nDistance: "+ hey.BHDistance[i][j] + "\n");
 			}
 		}
-		
 		if(!searchSuccess) {
 			System.out.println("No Boarding Houses that starts with \"" + search + "\"");
 			System.out.println("Do you want to search for more boarding houses[Y/N]? ");
@@ -114,11 +109,7 @@ public class BHFinder {
 		System.out.println("Do you want to search for more[Y/N]? ");
 		String choice= sc.nextLine();
 		if(choice.equalsIgnoreCase("y")||choice.equalsIgnoreCase("yes")) {
-			String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
-			tempBH = tempArr;
-			rangeOccupants = 0;
-			rangePrice = 0;
-			rangeDistance = 0;
+			resetBH();
 			campusFinder(campus);
 			options(campus);
 		}
@@ -215,11 +206,7 @@ public class BHFinder {
 				}
 			break;
 		case 4:
-			String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
-			tempBH = tempArr;
-			rangeOccupants = 0;
-			rangePrice = 0;
-			rangeDistance = 0;
+			resetBH();
 			filterPanel(campus);
 			break;
 		case 0:
@@ -367,10 +354,19 @@ public class BHFinder {
 		}		
 	}
 	
+	public static void resetBH() {
+		String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
+		tempBH = tempArr;
+		rangeOccupants = 0;
+		rangePrice = 0;
+		rangeDistance = 0;
+		usedFilter= false;
+	}
+	
 	public static int campusChecker(String campus) {
 		int i = 0;
 		for(boolean a = true; i < hey.BUCampuses.length && a;i++) {
-			if(campus.equalsIgnoreCase(hey.BUCampuses[i])) {
+			if(campus.equalsIgnoreCase(hey.BUCampuses[i]) || campus.equalsIgnoreCase(hey.lowerBUCampuses[i])) {
 				i--;
 				a = false;
 			}
