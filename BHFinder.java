@@ -62,7 +62,7 @@ public class BHFinder {
 				main(null);
 			}
 			else if(Ioption == 0) {
-				System.out.println("THANK YOU FOR SHOPPING");
+				System.out.println("THANK YOU FOR BROWSING OUR CATALOG");
 				System.exit(0);
 			}
 		}
@@ -73,7 +73,7 @@ public class BHFinder {
 	}
 	
 	public static String searchPanel() {
-		System.out.println("Search for Boarding Houses: ");
+		System.out.print("Search for Boarding Houses: ");
 		String search = sc.nextLine();
 		return search;
 	}
@@ -84,7 +84,7 @@ public class BHFinder {
 		for(int j = 0; j < hey.BHouses[i].length; j++) {
 			if(hey.BHouses[i][j].equalsIgnoreCase(search)) {
 				searchSuccess = true;
-				System.out.println(hey.BHouses[i][j] + ": " + hey.BHDeets[i][j]
+				System.out.println("\n\n"+hey.BHouses[i][j] + ": " + hey.BHDeets[i][j]
 						+ "\nTotal Occupants in a Room: " + hey.BHPeople[i][j]
 						+ "\nPrice: " + hey.BHPrice[i][j]
 						+ "\nDistance: "+ hey.BHDistance[i][j] + "\n");
@@ -93,7 +93,7 @@ public class BHFinder {
 		
 		if(!searchSuccess) {
 			System.out.println("No Boarding Houses that starts with \"" + search + "\"");
-			System.out.println("Do you want to search for more boarding houses[Y/N]? ");
+			System.out.print("Do you want to search for more boarding houses[Y/N]? ");
 			String choice= sc.nextLine();
 			if(choice.equalsIgnoreCase("y")||choice.equalsIgnoreCase("yes")) {
 				searchOptions(searchPanel(), campus);
@@ -108,7 +108,7 @@ public class BHFinder {
 		return null;
 	}
 	public static void wantMorePanel(String campus) {
-		System.out.println("Do you want to search for more[Y/N]? ");
+		System.out.print("Do you want to search for more[Y/N]? ");
 		String choice= sc.nextLine();
 		if(choice.equalsIgnoreCase("y")||choice.equalsIgnoreCase("yes")) {
 			resetBH();
