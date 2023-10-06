@@ -2,7 +2,7 @@ import java.util.*;
 
 public class BHFinder {
 
-	public static boardinghouses hey = new boardinghouses();
+	public static s hey = new s();
 	public static Scanner sc = new Scanner(System.in);
 	public static String tempBH[][] = new String[hey.arrnum][hey.BHPeople[0].length];
 	public static int rangeOccupants = 0, rangePrice = 0, rangeDistance = 0;
@@ -62,7 +62,7 @@ public class BHFinder {
 				main(null);
 			}
 			else if(Ioption == 0) {
-				System.out.println("THANK YOU FOR BROWSING OUR CATALOG");
+				System.out.println("THANK YOU FOR SHOPPING");
 				System.exit(0);
 			}
 		}
@@ -73,7 +73,7 @@ public class BHFinder {
 	}
 	
 	public static String searchPanel() {
-		System.out.print("Search for Boarding Houses: ");
+		System.out.println("Search for Boarding Houses: ");
 		String search = sc.nextLine();
 		return search;
 	}
@@ -82,6 +82,7 @@ public class BHFinder {
 		int i = campusChecker(campus);
 		boolean searchSuccess = false;
 		for(int j = 0; j < hey.BHouses[i].length; j++) {
+			String word1  []= hey.lowerBHouses[i][j].split(" "); 
 			if(hey.BHouses[i][j].equalsIgnoreCase(search)) {
 				searchSuccess = true;
 				System.out.println("\n\n"+hey.BHouses[i][j] + ": " + hey.BHDeets[i][j]
@@ -89,11 +90,26 @@ public class BHFinder {
 						+ "\nPrice: " + hey.BHPrice[i][j]
 						+ "\nDistance: "+ hey.BHDistance[i][j] + "\n");
 			}
+			else
+			{
+				for(int k=0; k < word1.length; k++)
+				{
+					if(word1[k].equalsIgnoreCase(search) || hey.BHouses[i][j].equalsIgnoreCase(search)) {
+						searchSuccess = true;
+						System.out.println(hey.BHouses[i][j] + ": " + hey.BHDeets[i][j]
+								+ "\nTotal Occupants in a Room: " + hey.BHPeople[i][j]
+								+ "\nPrice: " + hey.BHPrice[i][j]
+								+ "\nDistance: "+ hey.BHDistance[i][j] + "\n");
+					}
+				}
+			}
+			
+			
 		}
 		
 		if(!searchSuccess) {
 			System.out.println("No Boarding Houses that starts with \"" + search + "\"");
-			System.out.print("Do you want to search for more boarding houses[Y/N]? ");
+			System.out.println("Do you want to search for more boarding houses[Y/N]? ");
 			String choice= sc.nextLine();
 			if(choice.equalsIgnoreCase("y")||choice.equalsIgnoreCase("yes")) {
 				searchOptions(searchPanel(), campus);
@@ -108,7 +124,7 @@ public class BHFinder {
 		return null;
 	}
 	public static void wantMorePanel(String campus) {
-		System.out.print("Do you want to search for more[Y/N]? ");
+		System.out.println("Do you want to search for more[Y/N]? ");
 		String choice= sc.nextLine();
 		if(choice.equalsIgnoreCase("y")||choice.equalsIgnoreCase("yes")) {
 			resetBH();
@@ -130,6 +146,7 @@ public class BHFinder {
 				+ "[2] Price\n"
 				+ "[3] Distance\n"
 				+ "[4] Clear All Filters\n"
+				+ "[5] Back\n"
 				+ "[0] Done");
 		if(rangeOccupants!=0 || rangeDistance!=0 || rangePrice!=0)  
 			System.out.println("\nCurrent Filters Applied: ");
@@ -216,6 +233,10 @@ public class BHFinder {
 		case 4:
 			resetBH();
 			filterPanel(campus);
+			break;
+		case 5:
+			resetBH();
+			options(campus);
 			break;
 		case 0:
 			if(usedFilter) {
@@ -367,7 +388,6 @@ public class BHFinder {
 			}
 		}		
 	}
-	
 	public static void resetBH() {
 		String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
 		tempBH = tempArr;
