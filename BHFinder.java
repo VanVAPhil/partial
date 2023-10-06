@@ -58,11 +58,7 @@ public class asa {
 				filterPanel(campus);
 			}
 			else if(Ioption == 3) {
-				String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
-				tempBH = tempArr;
-				rangeOccupants = 0;
-				rangePrice = 0;
-				rangeDistance = 0;
+				resetBH();
 				main(null);
 			}
 			else if(Ioption == 0) {
@@ -120,11 +116,7 @@ public class asa {
 		System.out.println("Do you want to search for more[Y/N]? ");
 		String choice= sc.nextLine();
 		if(choice.equalsIgnoreCase("y")||choice.equalsIgnoreCase("yes")) {
-			String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
-			tempBH = tempArr;
-			rangeOccupants = 0;
-			rangePrice = 0;
-			rangeDistance = 0;
+			resetBH();
 			campusFinder(campus);
 			options(campus);
 		}
@@ -143,6 +135,7 @@ public class asa {
 				+ "[2] Price\n"
 				+ "[3] Distance\n"
 				+ "[4] Clear All Filters\n"
+				+ "[5] Back\n"
 				+ "[0] Done");
 		if(rangeOccupants!=0 || rangeDistance!=0 || rangePrice!=0)  
 			System.out.println("\nCurrent Filters Applied: ");
@@ -227,12 +220,12 @@ public class asa {
 				}
 			break;
 		case 4:
-			String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
-			tempBH = tempArr;
-			rangeOccupants = 0;
-			rangePrice = 0;
-			rangeDistance = 0;
+			resetBH();
 			filterPanel(campus);
+			break;
+		case 5:
+			resetBH();
+			options(campus);
 			break;
 		case 0:
 			if(usedFilter) {
@@ -383,6 +376,14 @@ public class asa {
 						+ "\nDistance: "+ tempBH[j][2] + "\n");
 			}
 		}		
+	}
+	public static void resetBH() {
+		String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
+		tempBH = tempArr;
+		rangeOccupants = 0;
+		rangePrice = 0;
+		rangeDistance = 0;
+		usedFilter= false;
 	}
 	
 	public static int campusChecker(String campus) {
