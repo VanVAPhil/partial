@@ -36,7 +36,7 @@ public class BHFinder {
 				return campus;
 			}
 		}
-		System.out.println("Wrong SHIT");
+		System.out.println("Invalid Campus Input");
 		main(null);	
 		return campus;
 	}
@@ -58,11 +58,7 @@ public class BHFinder {
 				filterPanel(campus);
 			}
 			else if(Ioption == 3) {
-				String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
-				tempBH = tempArr;
-				rangeOccupants = 0;
-				rangePrice = 0;
-				rangeDistance = 0;
+				resetBH();
 				main(null);
 			}
 			else if(Ioption == 0) {
@@ -115,11 +111,7 @@ public class BHFinder {
 		System.out.println("Do you want to search for more[Y/N]? ");
 		String choice= sc.nextLine();
 		if(choice.equalsIgnoreCase("y")||choice.equalsIgnoreCase("yes")) {
-			String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
-			tempBH = tempArr;
-			rangeOccupants = 0;
-			rangePrice = 0;
-			rangeDistance = 0;
+			resetBH();
 			campusFinder(campus);
 			options(campus);
 		}
@@ -222,11 +214,7 @@ public class BHFinder {
 				}
 			break;
 		case 4:
-			String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
-			tempBH = tempArr;
-			rangeOccupants = 0;
-			rangePrice = 0;
-			rangeDistance = 0;
+			resetBH();
 			filterPanel(campus);
 			break;
 		case 0:
@@ -378,6 +366,15 @@ public class BHFinder {
 						+ "\nDistance: "+ tempBH[j][2] + "\n");
 			}
 		}		
+	}
+	
+	public static void resetBH() {
+		String tempArr[][]=new String[hey.arrnum][hey.BHPeople[0].length];
+		tempBH = tempArr;
+		rangeOccupants = 0;
+		rangePrice = 0;
+		rangeDistance = 0;
+		usedFilter= false;
 	}
 	
 	public static int campusChecker(String campus) {
